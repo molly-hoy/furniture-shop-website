@@ -1,0 +1,246 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  margin-top: var(--space-5);
+}
+
+/* ----- Illustration area ----- */
+.gallery {
+  position: sticky;
+  top: calc(var(--header-h) + 50px);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 12%;
+  border-radius: var(--radius);
+  background: var(--plinth);
+}
+
+.stage svg {
+  width: 100%;
+  height: 100%;
+  /* A soft fade when the colour changes. */
+  transition: opacity 0.2s;
+}
+
+.thumbs {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.thumb {
+  width: 84px;
+  aspect-ratio: 1;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--plinth);
+  transition: border-color 0.2s;
+}
+
+.thumb:hover {
+  border-color: var(--line);
+}
+
+.thumb[aria-pressed="true"] {
+  border-color: var(--ink);
+}
+
+/* ----- Info column ----- */
+.info {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.info h1 {
+  font-size: var(--text-2xl);
+}
+
+.badges {
+  display: flex;
+  gap: var(--space-2);
+  min-height: 0;
+}
+
+.badges:empty {
+  display: none;
+}
+
+.description {
+  max-width: 52ch;
+  color: var(--muted);
+}
+
+.colours {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.colours legend {
+  margin-bottom: var(--space-3);
+  padding: 0;
+  font-size: var(--text-sm);
+}
+
+.swatchRow {
+  display: flex;
+  gap: var(--space-3);
+}
+
+/* The real radio input is hidden; the label shows a coloured circle. */
+.swatch {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(0 0 0 / 0.15);
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow: 0 0 0 3px var(--paper);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.swatch input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+/* :has() styles the label when the radio inside it is checked. */
+.swatch:has(input:checked) {
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--ink);
+}
+
+.swatch:has(input:focus-visible) {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 6px;
+}
+
+.stock {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--success);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.stockLow {
+  color: var(--warning);
+}
+
+.stockOut {
+  color: var(--sale);
+}
+
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.buy :global(.btn) {
+  flex: 1;
+  min-width: 220px;
+}
+
+.perks {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4) 0;
+  border-block: 1px solid var(--line);
+  font-size: var(--text-sm);
+}
+
+.perks li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.perks svg {
+  color: var(--cobalt);
+  flex-shrink: 0;
+}
+
+/* ----- Accordion (<details>) ----- */
+.accordion details {
+  border-bottom: 1px solid var(--line);
+}
+
+.accordion summary {
+  display: flex;
+  justify-content: space-between;
+  padding-block: var(--space-4);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none; /* hides the default triangle */
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Our own +/– sign that flips when open. */
+.accordion summary::after {
+  content: "+";
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.accordion details[open] summary::after {
+  content: "–";
+}
+
+.accordion p {
+  padding-bottom: var(--space-4);
+  color: var(--muted);
+}
+
+/* ----- Related products ----- */
+.related {
+  margin-top: var(--space-9);
+}
+
+.related h2 {
+  margin-bottom: var(--space-5);
+  font-size: var(--text-2xl);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .gallery {
+    position: static;
+  }
+
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5) var(--space-3);
+  }
+}

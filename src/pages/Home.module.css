@@ -1,0 +1,229 @@
+/* Every section after the hero gets the same gap above it. */
+.hero ~ section {
+  margin-top: var(--space-9);
+}
+
+/* ----- Hero ----- */
+.hero {
+  padding-block: var(--space-7) 0;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.heroText {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.heroText h1 {
+  font-size: var(--text-3xl);
+  line-height: 0.98;
+}
+
+.kicker {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--cobalt);
+}
+
+.lead {
+  max-width: 44ch;
+  font-size: var(--text-lg);
+  color: var(--muted);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.scene {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.scene svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ----- Section headings with a link on the right ----- */
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.sectionHead h2 {
+  font-size: var(--text-2xl);
+}
+
+/* ----- Category tiles ----- */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-4);
+}
+
+.categoryTile {
+  display: grid;
+  gap: var(--space-1);
+  text-decoration: none;
+}
+
+.categoryArt {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 14%;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius);
+  background: var(--plinth);
+  transition: background-color 0.3s;
+}
+
+.categoryArt svg {
+  transition: transform 0.5s var(--ease);
+}
+
+.categoryTile:hover .categoryArt {
+  background: #e1ddd4;
+}
+
+.categoryTile:hover .categoryArt svg {
+  transform: scale(1.06);
+}
+
+.categoryName {
+  font-weight: 700;
+}
+
+.categoryCount {
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+/* ----- Product grids ----- */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6) var(--space-5);
+}
+
+/* ----- Feature banner ----- */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-7);
+  border-radius: var(--radius);
+  background: var(--cobalt);
+  color: var(--white);
+}
+
+.featureText {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+
+.featureText h2 {
+  font-size: var(--text-2xl);
+}
+
+.featureText p {
+  max-width: 46ch;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.featureText .kicker {
+  color: #c9d2ff;
+}
+
+.featureText :global(.btn-dark) {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.featureArt {
+  max-width: 420px;
+  justify-self: center;
+  width: 100%;
+}
+
+/* ----- Promises ----- */
+.promises {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--line);
+}
+
+.promises li {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.promises svg {
+  color: var(--cobalt);
+  margin-bottom: var(--space-2);
+}
+
+.promises h3 {
+  font-size: var(--text-lg);
+}
+
+.promises p {
+  color: var(--muted);
+  max-width: 34ch;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 1000px) {
+  .heroGrid,
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero ~ section {
+    margin-top: var(--space-8);
+  }
+
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .promises {
+    grid-template-columns: 1fr;
+  }
+
+  .feature {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .productGrid {
+    gap: var(--space-5) var(--space-3);
+  }
+}

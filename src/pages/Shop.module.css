@@ -1,0 +1,319 @@
+/* Sidebar on the left, results on the right. */
+.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+/* ----- Filter sidebar ----- */
+.filters {
+  position: sticky;
+  top: calc(var(--header-h) + 50px);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.filtersHead {
+  display: none; /* only shown in the mobile panel */
+}
+
+.group {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0 0 var(--space-5);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.groupTitle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+  padding: 0;
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.groupTitle output {
+  font-size: var(--text-sm);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--cobalt);
+}
+
+.searchBox {
+  position: relative;
+}
+
+.searchBox svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
+
+.searchBox input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-3) 0 2.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+}
+
+.searchBox input:focus {
+  outline: none;
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 3px rgb(39 71 216 / 0.15);
+}
+
+.option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 34px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.option input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--cobalt);
+}
+
+.optionCount {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ----- Custom range slider -----
+   The --fill variable (set in Shop.jsx) colours the track up to the thumb. */
+.range {
+  width: 100%;
+  height: 6px;
+  margin: var(--space-3) 0;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--cobalt) var(--fill), var(--line) var(--fill));
+  appearance: none;
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  background: var(--cobalt);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+  appearance: none;
+}
+
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  background: var(--cobalt);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+}
+
+.rangeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+.showResults,
+.filterButton,
+.closeFilters {
+  display: none;
+}
+
+/* ----- Toolbar above the results ----- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.count {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.sort label {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.sort select {
+  min-height: 42px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  font-weight: 600;
+}
+
+/* ----- Active filter chips ----- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.chip:hover {
+  background: var(--cobalt);
+}
+
+.filterCount {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--cobalt);
+  color: var(--white);
+  font-size: 0.72rem;
+}
+
+/* ----- Results grid ----- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6) var(--space-5);
+}
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius);
+  background: var(--plinth);
+}
+
+.empty h2 {
+  font-size: var(--text-xl);
+}
+
+.backdrop {
+  display: none;
+}
+
+/* ----- Tablet and phone: filters become a slide-in panel ----- */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filterButton {
+    display: inline-flex;
+    min-height: 42px;
+    padding: 0 var(--space-4);
+  }
+
+  .count {
+    display: none;
+  }
+
+  .filters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 90;
+    width: min(360px, 90vw);
+    padding: var(--space-5);
+    align-content: start;
+    background: var(--paper);
+    overflow-y: auto;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.35s var(--ease), visibility 0.35s;
+  }
+
+  .filtersOpen {
+    transform: none;
+    visibility: visible;
+  }
+
+  .filtersHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filtersHead h2 {
+    font-size: var(--text-xl);
+  }
+
+  .closeFilters {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+  }
+
+  .showResults {
+    display: inline-flex;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    background: rgb(28 29 31 / 0.45);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5) var(--space-3);
+  }
+}
+
+@media (max-width: 420px) {
+  .sort label {
+    display: none;
+  }
+}

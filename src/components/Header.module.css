@@ -1,0 +1,225 @@
+/* Header styles. Used in Header.jsx as styles.header, styles.bar, etc. */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgb(246 245 241 / 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.announce {
+  padding: 7px var(--gutter);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Logo | nav | search + basket, laid out with CSS Grid. */
+.bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-6);
+  height: var(--header-h);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--cobalt);
+}
+
+.navList {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.navList a {
+  padding-block: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.navList a:hover {
+  border-color: var(--line);
+}
+
+.navList a[aria-current="page"] {
+  border-color: var(--cobalt);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Pill-shaped search box with the icon inside. */
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search svg {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.search input {
+  width: 250px;
+  min-height: 42px;
+  padding: 0 var(--space-4) 0 2.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: var(--text-sm);
+}
+
+.search input:focus {
+  outline: none;
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 3px rgb(39 71 216 / 0.15);
+}
+
+.iconButton,
+.basketButton {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 0.2s;
+}
+
+.iconButton:hover,
+.basketButton:hover {
+  background: var(--plinth);
+}
+
+/* The little number bubble on the basket. */
+.count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--cobalt);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  animation: pop 0.35s var(--ease);
+}
+
+@keyframes pop {
+  from { transform: scale(0.4); }
+  to   { transform: scale(1); }
+}
+
+.menuButton,
+.mobileSearch {
+  display: none;
+}
+
+/* ----- Medium screens: no room for the search box, so show a search
+   icon that links to the Shop page (which has its own search). ----- */
+.searchLink {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .desktopSearch {
+    display: none;
+  }
+  .searchLink {
+    display: grid;
+  }
+}
+
+/* ----- Small screens: links move into a slide-down panel ----- */
+@media (max-width: 900px) {
+  .bar {
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-3);
+  }
+
+  .menuButton {
+    display: grid;
+  }
+
+  .searchLink {
+    display: none;
+  }
+
+  .logo {
+    justify-self: center;
+  }
+
+  .nav {
+    position: fixed;
+    inset: calc(var(--header-h) + 31px) 0 0 0;
+    padding: var(--space-5) var(--gutter);
+    background: var(--paper);
+    overflow-y: auto;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.35s var(--ease), visibility 0.35s;
+  }
+
+  .navOpen {
+    transform: none;
+    visibility: visible;
+  }
+
+  .nav .mobileSearch {
+    display: block;
+    margin-bottom: var(--space-5);
+  }
+
+  .search input {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .navList {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .navList a {
+    display: block;
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+  }
+
+  .navList a[aria-current="page"] {
+    color: var(--cobalt);
+    border-color: var(--line);
+  }
+}

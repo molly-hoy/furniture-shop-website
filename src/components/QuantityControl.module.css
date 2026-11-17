@@ -1,0 +1,38 @@
+.stepper {
+  display: inline-grid;
+  grid-template-columns: 44px 40px 44px;
+  align-items: center;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+}
+
+.stepper button {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  border: 0;
+  background: none;
+  border-radius: 999px;
+}
+
+.stepper button:hover:not(:disabled) {
+  color: var(--cobalt);
+}
+
+.stepper button:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.stepper output {
+  text-align: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.small {
+  grid-template-columns: 34px 30px 34px;
+  height: 38px;
+}
